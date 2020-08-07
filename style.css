@@ -75,7 +75,6 @@ section {
 
 .about .inner {
   display: table-cell;
-  vertical-align: middle;
   float: left;
   width: 60%;
   padding-top: 75px;
@@ -92,6 +91,7 @@ section {
   width: 80%;
   font-family: "Noto Sans KR", sans-serif;
   line-height: 30px;
+  text-align: justify;
 }
 .education {
   background-color: #fff;

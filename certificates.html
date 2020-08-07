@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Certificates Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            min-height: 100vh;
+            background: #232a42;
+        }
+
+        .box {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px;
+            background: #060c21;
+            transition: 0.5s;
+        }
+
+        .box:hover {
+            height: 400px;
+        }
+
+        .box .imgBx {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .box .imgBx img {
+            max-width: 100%;
+            opacity: 0.3;
+            transition: 0.5s;
+        }
+
+        .box:hover .imgBx img {
+            opacity: 1;
+        }
+
+        .box:before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: #fff;
+            z-index: -1;
+        }
+
+        .box:after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: #fff;
+            z-index: -2;
+            filter: blur(40px);
+        }
+
+        .box:before,
+        .box:after {
+            background: linear-gradient(235deg, #ff005e, #010615, #fbff00);
+        }
+
+        .box .content {
+            padding-top: 250px;
+            bottom: 0;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            height: 10px;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            transition: 0.5s;
+        }
+
+        .box:hover .content {
+            opacity: 1;
+        }
+
+        .box .content h2 {
+            font-size: 20px;
+            color: #fff;
+            font-weight: 500;
+            line-height: 20px;
+            letter-spacing: 1px;
+        }
+
+        .box .content h2 span {
+            font-size: 14px;
+            color: #fff;
+            font-weight: 200;
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            text-align: center;
+            justify-content: center;
+            padding-right: 500px;
+            padding-left: 500px;
+            padding-top: 40px;
+            font-size: 40px;
+            font-weight: 700;
+            color: rgba(1, 9, 34, 0.87);
+            text-shadow: 1px 5px rgba(15, 0, 32, 0.2);
+            font-style: oblique;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Certificates</h1>
+    <div class="box">
+        <div class="imgBx">
+            <a href="certificates/Certificate Course in Web Design by NIELIT.jpg"><img
+                    src="certificates/Certificate Course in Web Design by NIELIT.jpg"></a>
+        </div>
+        <div class="content">
+            <h2>Certificate Course in Web Design<br><span>by NIELIT</span> </h2>
+        </div>
+    </div>
+    <div class="box">
+        <div class="imgBx">
+            <a href="certificates/Certificate course in Programming through Python  by NIELIT.jpg"><img
+                    src="certificates/Certificate course in Programming through Python  by NIELIT.jpg"></a>
+        </div>
+        <div class="content">
+            <h2>Certificate Course in Programming through Python<br><span>by NIELIT</span> </h2>
+        </div>
+    </div>
+    <div class="box">
+        <div class="imgBx">
+            <a href="certificates/Certificate Program in Python Programming by LetsUpgrade LUPY0620A0679.jpg">
+                <img src="certificates/Certificate Program in Python Programming by LetsUpgrade LUPY0620A0679.jpg"></a>
+        </div>
+        <div class="content">
+            <h2>Certificate Program in Python Programming<br><span>by LetsUpgrade</span> </h2>
+        </div>
+    </div>
+    <div class="box">
+        <div class="imgBx">
+            <a href="certificates/Code with Ken_ Hands-on with JavaScript and Building a Game.jpg">
+                <img src="certificates/Code with Ken_ Hands-on with JavaScript and Building a Game.jpg"></a>
+        </div>
+        <div class="content">
+            <h2>Hands-on with JavaScript and Building a Game<br><span>by Progate</span> </h2>
+        </div>
+    </div>
+    <div class="box">
+        <div class="imgBx">
+            <a href="certificates/Learning Weekend  Certificate Python.jpg">
+                <img src="certificates/Learning Weekend  Certificate Python.jpg"></a>
+        </div>
+        <div class="content">
+            <h2>Learning Weekend - Python<br><span>by Progate</span> </h2>
+        </div>
+    </div>
+    <div class="box">
+        <div class="imgBx">
+            <a href="certificates/Git Learning Challenge Certificate.jpg">
+                <img src="certificates/Git Learning Challenge Certificate.jpg"></a>
+        </div>
+        <div class="content">
+            <h2>Git Learning Challenge<br><span>by Progate</span> </h2>
+        </div>
+    </div>
+    <div class="box">
+        <div class="imgBx">
+            <a href="certificates/Web Technologies-page-109.jpg">
+                <img src="certificates/Web Technologies-page-109.jpg"></a>
+        </div>
+        <div class="content">
+            <h2>Web Technologies<br><span>by GirlScript</span> </h2>
+        </div>
+    </div>
+    <div class="box">
+        <div class="imgBx">
+            <a href="certificates/Frontend Fundamentals - Pirple.com.jpg">
+                <img src="certificates/Frontend Fundamentals - Pirple.com.jpg"></a>
+        </div>
+        <div class="content">
+            <h2>Frontend Fundamentals<br><span>by Pirple</span> </h2>
+        </div>
+    </div>
+    <div class="box">
+        <div class="imgBx">
+            <a href="certificates/SoloLearn HTML Fundamental.jpg">
+                <img src="certificates/SoloLearn HTML Fundamental.jpg"></a>
+        </div>
+        <div class="content">
+            <h2>HTML Fundamental<br><span>by SoloLearn</span> </h2>
+        </div>
+    </div>
+    <div class="box">
+        <div class="imgBx">
+            <a href="certificates/Coursera - Perform Sentiment Analysis with scikit-learn -- QNNZCS4TC7MA.jpg">
+                <img src="certificates/Coursera - Perform Sentiment Analysis with scikit-learn -- QNNZCS4TC7MA.jpg"></a>
+        </div>
+        <div class="content">
+            <h2>Perform Sentiment Analysis with scikit-learn<br><span>by Coursera</span> </h2>
+        </div>
+    </div>
+    <div class="box">
+        <div class="imgBx">
+            <a href="certificates/Machine Learning With Python - Goeduhub.jpg">
+                <img src="certificates/Machine Learning With Python - Goeduhub.jpg"></a>
+        </div>
+        <div class="content">
+            <h2>Machine Learning With Python<br><span>by Goeduhub</span> </h2>
+        </div>
+    </div>
+    <div class="box">
+        <div class="imgBx">
+            <a href="certificates/Python 101 for Data Science.jpg">
+                <img src="certificates/Python 101 for Data Science.jpg"></a>
+        </div>
+        <div class="content">
+            <h2>Python 101 for Data Science<br><span>by IBM</span> </h2>
+        </div>
+    </div>
+    <div class="box">
+        <div class="imgBx">
+            <a href="certificates/NEO 3.0.jpg">
+                <img src="certificates/NEO 3.0.jpg"></a>
+        </div>
+        <div class="content">
+            <h2>Participation Certificate<br><span>by NEO 3.0</span> </h2>
+        </div>
+    </div>
+    <div class="box">
+        <div class="imgBx">
+            <a href="certificates/IIEC AI Workshop Certificate.jpg">
+                <img src="certificates/IIEC AI Workshop Certificate.jpg"></a>
+        </div>
+        <div class="content">
+            <h2>Artificial Intelligence Workshop<br><span>by IIEC</span> </h2>
+        </div>
+    </div>
+</body>
+
+</html>

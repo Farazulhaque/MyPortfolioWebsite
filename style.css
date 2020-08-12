@@ -21,6 +21,7 @@ body {
   text-decoration: none;
   font-size: 18px;
   text-shadow: 5px 5px 2px rgb(37, 36, 36);
+  
 }
 
 /* Change the color of links on hover */
@@ -41,13 +42,27 @@ section {
   background-color: #4cbbb9;
 }
 .home {
-  background-color: #787973;
   text-align: center;
   font-size: 48px;
   color: #ffffff;
   display: table;
   height: 100vh;
   width: 100%;
+  animation: home 15s infinite;
+}
+@keyframes home{
+  0%{
+    background-color:#332842;
+  }
+  25%{
+    background-color:#1a3636;
+  }
+  50%{
+    background-color:#105780;
+  }
+  100%{
+    background-color:#145738;
+  }
 }
 .inner {
   display: table-cell;
@@ -60,7 +75,8 @@ section {
   box-shadow: 0 0 50px #2c0505;
 }
 .home .inner p {
-  color: #260552;
+  color: #ffffff;
+  font-size: 2.5;
   font-family: "Quintessential", cursive;
 }
 .about {
@@ -242,7 +258,7 @@ footer p span:hover {
 
 /* Responsive Design */
 @media (min-width: 320px) and (max-width: 767px) {
-  .topnav {
+  .topnav{
     padding: 0;
     margin: 0;
     width: 100%;

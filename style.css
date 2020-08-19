@@ -20,15 +20,16 @@ body {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 18px;
-  text-shadow: 5px 5px 2px rgb(37, 36, 36);
+  text-shadow: 3px 3px 3px rgb(22, 22, 22);
   
 }
 
 /* Change the color of links on hover */
 .topnav a:hover {
-  font-weight: 800;
+  padding-bottom: 0;
+  border-bottom:2px solid #000;
   color: rgb(0, 0, 0);
-  font-size: 1.2em;
+  
 }
 
 /* Add an active class to highlight the current page */
@@ -55,13 +56,16 @@ section {
     background-color:#332842;
   }
   25%{
-    background-color:#1a3636;
+    background-color:#332852;
   }
   50%{
-    background-color:#105780;
+    background-color:#332862;
+  }
+  75%{
+    background-color:#332872;
   }
   100%{
-    background-color:#145738;
+    background-color:#332882;
   }
 }
 .inner {
@@ -70,9 +74,9 @@ section {
 }
 .home .inner img {
   border-radius: 100%;
-  width: 300px;
+  width: 200px;
   height: auto;
-  box-shadow: 0 0 50px #2c0505;
+  box-shadow: 0 0 100px #2c0505;
 }
 .home .inner p {
   color: #ffffff;

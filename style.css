@@ -53,19 +53,19 @@ section {
 }
 @keyframes home{
   0%{
-    background-color:#332842;
+    background-color:#4b5053;
   }
   25%{
-    background-color:#332852;
+    background-color:#413e4d;
   }
   50%{
-    background-color:#332862;
+    background-color:#302d3b;
   }
   75%{
-    background-color:#332872;
+    background-color:#2e2c3f;
   }
   100%{
-    background-color:#332882;
+    background-color:#211f30;
   }
 }
 .inner {
@@ -84,7 +84,7 @@ section {
   font-family: "Quintessential", cursive;
 }
 .about {
-  background-image: url("https://www.thinktrekwebsoft.com/wp-content/themes/think/data1/images/banner.jpg");
+  background-image: url("https://i.pinimg.com/originals/51/95/eb/5195ebb8c5f9772deda82aa2937134d3.jpg");
   display: table;
   height: 100vh;
   width: 100%;
@@ -113,7 +113,7 @@ section {
   text-align: justify;
 }
 .education {
-  background-color: #fff;
+  background-color: rgb(208, 209, 203);
   display: table;
   height: 100vh;
   width: 100%;
@@ -164,7 +164,7 @@ section {
   padding: 50px;
 }
 .hobbies {
-  background-color: #264e74;
+  background-color: #424f5a;
 }
 .skills {
   background-image: url("https://blog.bannersnack.com/wp-content/uploads/2016/05/Banner-Ad-Design-Examples--1200x900.png");

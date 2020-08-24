@@ -21,15 +21,13 @@ body {
   text-decoration: none;
   font-size: 18px;
   text-shadow: 3px 3px 3px rgb(22, 22, 22);
-  
 }
 
 /* Change the color of links on hover */
 .topnav a:hover {
   padding-bottom: 0;
-  border-bottom:2px solid #000;
+  border-bottom: 2px solid #000;
   color: rgb(0, 0, 0);
-  
 }
 
 /* Add an active class to highlight the current page */
@@ -51,21 +49,21 @@ section {
   width: 100%;
   animation: home 15s infinite;
 }
-@keyframes home{
-  0%{
-    background-color:#4b5053;
+@keyframes home {
+  0% {
+    background-color: #4b5053;
   }
-  25%{
-    background-color:#413e4d;
+  25% {
+    background-color: #413e4d;
   }
-  50%{
-    background-color:#302d3b;
+  50% {
+    background-color: #302d3b;
   }
-  75%{
-    background-color:#2e2c3f;
+  75% {
+    background-color: #2e2c3f;
   }
-  100%{
-    background-color:#211f30;
+  100% {
+    background-color: #211f30;
   }
 }
 .inner {
@@ -262,7 +260,7 @@ footer p span:hover {
 
 /* Responsive Design */
 @media (min-width: 320px) and (max-width: 767px) {
-  .topnav{
+  .topnav {
     padding: 0;
     margin: 0;
     width: 100%;

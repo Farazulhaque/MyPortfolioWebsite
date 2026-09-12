@@ -922,6 +922,10 @@ p {
   text-align: center;
 }
 
+.dash-contact .contact-links {
+  justify-content: center;
+}
+
 @media (max-width: 900px) {
   .dash-grid-3,
   .dash-stats-grid {

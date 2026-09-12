@@ -79,6 +79,7 @@ p {
 .sidebar-top {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .sidebar-top > * {
@@ -103,7 +104,7 @@ p {
 .sidebar-photo {
   width: 96px;
   height: 96px;
-  border-radius: 20px;
+  border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--accent);
   box-shadow: 0 0 30px rgba(43, 188, 138, 0.3);
@@ -230,8 +231,8 @@ p {
   flex: 1;
   min-width: 0;
   width: 100%;
-  padding: 4rem 4rem 6rem;
-  max-width: 760px;
+  padding: 4rem 5vw 6rem;
+  max-width: none;
 }
 
 .content-section {
@@ -269,6 +270,10 @@ p {
   transform: translateY(0);
 }
 
+.about-text {
+  max-width: 900px;
+}
+
 .about-text p {
   margin: 0 0 1rem;
 }
@@ -282,6 +287,15 @@ p {
 }
 
 .timeline-row,
+.skills-row {
+  max-width: 900px;
+}
+
+.project-row {
+  max-width: 1100px;
+}
+
+.timeline-row,
 .project-row,
 .skills-row {
   display: flex;
@@ -289,7 +303,6 @@ p {
   padding: 1.25rem;
   border-radius: 10px;
   transition: background 0.25s ease, transform 0.25s ease;
-  max-width: 100%;
 }
 
 .timeline-row:hover,
@@ -389,6 +402,7 @@ p {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
+  max-width: 1100px;
 }
 
 .stat-card {
@@ -467,6 +481,19 @@ p {
     padding: 2rem 1.25rem;
   }
 
+  .sidebar-top {
+    align-items: center;
+    text-align: center;
+  }
+
+  .nav-toggle {
+    position: absolute;
+    top: 2rem;
+    right: 1.25rem;
+    align-self: auto;
+    margin-top: 0;
+  }
+
   .sidebar-nav {
     position: absolute;
     top: 100%;
@@ -478,23 +505,21 @@ p {
     margin: 0;
     padding: 0.5rem 1.5rem 1rem;
     z-index: 10;
+    align-items: center;
+    text-align: center;
   }
 
   .sidebar-nav-open {
     display: flex;
   }
 
-  .nav-toggle {
-    display: flex;
-  }
-
   .sidebar-social {
     margin-top: 1rem;
+    justify-content: center;
   }
 
   .content {
     padding: 2.5rem 1.5rem 4rem;
-    max-width: none;
   }
 
   .stats-grid {

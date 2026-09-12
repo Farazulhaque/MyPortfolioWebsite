@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-const NAV_LINKS = ['About', 'Experience', 'Projects', 'Skills', 'Contact']
+const SECTIONS = ['about', 'experience', 'education', 'projects', 'achievements', 'contact']
 
 function useReveal() {
   const ref = useRef(null)
@@ -25,97 +25,148 @@ function useReveal() {
   return [ref, visible]
 }
 
-function Reveal({ children, className = '' }) {
+function Reveal({ children, className = '', delay = 0 }) {
   const [ref, visible] = useReveal()
   return (
-    <div ref={ref} className={`reveal ${visible ? 'reveal-visible' : ''} ${className}`}>
+    <div
+      ref={ref}
+      className={`reveal ${visible ? 'reveal-visible' : ''} ${className}`}
+      style={{ transitionDelay: visible ? `${delay}ms` : '0ms' }}
+    >
       {children}
     </div>
   )
 }
 
-function Nav() {
-  const [open, setOpen] = useState(false)
+function useActiveSection() {
+  const [active, setActive] = useState('about')
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id)
+        })
+      },
+      { rootMargin: '-40% 0px -50% 0px' }
+    )
+    SECTIONS.forEach((id) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+    return () => observer.disconnect()
+  }, [])
+
+  return active
+}
+
+function useCountUp(end, active, duration = 1400) {
+  const [value, setValue] = useState(0)
+  useEffect(() => {
+    if (!active) return
+    let start = null
+    let frame
+    const step = (ts) => {
+      if (!start) start = ts
+      const progress = Math.min((ts - start) / duration, 1)
+      setValue(Math.floor(progress * end))
+      if (progress < 1) frame = requestAnimationFrame(step)
+    }
+    frame = requestAnimationFrame(step)
+    return () => cancelAnimationFrame(frame)
+  }, [active, end, duration])
+  return value
+}
+
+function StatCard({ end, suffix, label, delay }) {
+  const [ref, visible] = useReveal()
+  const value = useCountUp(end, visible)
   return (
-    <header className="nav">
-      <a className="nav-brand" href="#home">MFH</a>
-      <button className="nav-toggle" onClick={() => setOpen(!open)} aria-label="Toggle menu">
-        <span />
-        <span />
-        <span />
-      </button>
-      <nav className={`nav-links ${open ? 'nav-links-open' : ''}`}>
-        {NAV_LINKS.map((link) => (
-          <a key={link} href={`#${link.toLowerCase()}`} onClick={() => setOpen(false)}>
-            {link}
-          </a>
-        ))}
-      </nav>
-    </header>
+    <div
+      ref={ref}
+      className={`stat-card reveal ${visible ? 'reveal-visible' : ''}`}
+      style={{ transitionDelay: visible ? `${delay}ms` : '0ms' }}
+    >
+      <div className="stat-number">{value}{suffix}</div>
+      <div className="stat-label">{label}</div>
+    </div>
   )
 }
 
-function Hero() {
+function Sidebar() {
+  const active = useActiveSection()
+  const [open, setOpen] = useState(false)
+
+  const links = [
+    { id: 'about', label: 'About' },
+    { id: 'experience', label: 'Experience' },
+    { id: 'education', label: 'Education' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'achievements', label: 'Achievements' },
+    { id: 'contact', label: 'Contact' },
+  ]
+
   return (
-    <section id="home" className="hero">
-      <div className="hero-glow" />
-      <img
-        className="hero-photo"
-        src={`${import.meta.env.BASE_URL}profile.jpg`}
-        alt="Md Farazul Haque"
-      />
-      <span className="badge badge-status">Open to Work</span>
-      <h1>Md Farazul Haque</h1>
-      <p className="hero-tagline">Backend Engineer &middot; Java / Spring Boot</p>
-      <p className="hero-sub">
-        4.5+ years building production Spring Boot services, security-first engineering,
-        and AI-powered automation.
-      </p>
-      <div className="hero-actions">
-        <a className="btn btn-primary" href="#contact">Get in touch</a>
-        <a className="btn btn-outline" href="https://github.com/Farazulhaque" target="_blank" rel="noreferrer">
-          GitHub
-        </a>
+    <aside className="sidebar">
+      <div className="sidebar-top">
+        <img
+          className="sidebar-photo"
+          src={`${import.meta.env.BASE_URL}profile.jpg`}
+          alt="Md Farazul Haque"
+        />
+        <h1 className="sidebar-name">Md Farazul Haque</h1>
+        <p className="sidebar-role">Backend Engineer</p>
+        <span className="badge badge-status">Open to Work</span>
+        <p className="sidebar-desc">
+          4.5+ years building production Spring Boot services with a security-first mindset.
+        </p>
+        <button className="nav-toggle" onClick={() => setOpen(!open)} aria-label="Toggle menu">
+          <span />
+          <span />
+          <span />
+        </button>
       </div>
-    </section>
+
+      <nav className={`sidebar-nav ${open ? 'sidebar-nav-open' : ''}`}>
+        {links.map((l) => (
+          <a
+            key={l.id}
+            href={`#${l.id}`}
+            className={active === l.id ? 'active' : ''}
+            onClick={() => setOpen(false)}
+          >
+            <span className="nav-indicator" />
+            {l.label}
+          </a>
+        ))}
+      </nav>
+
+      <div className="sidebar-social">
+        <a href="https://github.com/Farazulhaque" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/md-farazul-haque-b42200127/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="https://www.naukri.com/mnjuser/profile" target="_blank" rel="noreferrer">Naukri</a>
+      </div>
+    </aside>
   )
 }
 
 function About() {
   const items = [
-    {
-      icon: '👨‍💻',
-      title: 'Backend Software Engineer',
-      body: 'At ARC Document Solutions with 4.5+ years of experience, owning production Spring Boot microservices end-to-end.',
-    },
-    {
-      icon: '🔒',
-      title: 'Security-first engineering',
-      body: 'Closed 9 High-severity security findings (auth, CSRF, IDOR, SSRF) across two full adversarial codebase audits, and built a full-stack support ticketing platform (Spring Boot, React, AWS S3) now running in production.',
-    },
-    {
-      icon: '☁️',
-      title: 'Cloud & reliability',
-      body: 'Shipped integrations across AWS (ECS, Lambda, SQS, S3) and Azure Blob Storage, and root-caused several live production incidents (Kubernetes, ClickHouse, SQL) end-to-end.',
-    },
-    {
-      icon: '🌱',
-      title: 'Currently building',
-      body: 'An AI-powered job-application automation platform (Java, Spring Boot, Selenium, Spring AI + Google Gemini) that auto-applies to relevant roles and answers recruiter chatbot questions.',
-    },
+    'Backend Software Engineer at ARC Document Solutions with 4.5+ years of experience, owning production Spring Boot microservices end-to-end.',
+    'Security-first engineering -- closed 9 High-severity security findings (auth, CSRF, IDOR, SSRF) across two full adversarial codebase audits, and built a full-stack support ticketing platform (Spring Boot, React, AWS S3) now running in production.',
+    'Cloud & reliability -- shipped integrations across AWS (ECS, Lambda, SQS, S3) and Azure Blob Storage, and root-caused several live production incidents end-to-end.',
+    'Currently building an AI-powered job-application automation platform (Java, Spring Boot, Selenium, Spring AI + Google Gemini).',
   ]
   return (
-    <section id="about" className="section">
-      <Reveal><h2 className="section-title">About Me</h2></Reveal>
-      <div className="about-grid">
-        {items.map((item) => (
-          <Reveal key={item.title} className="card">
-            <span className="card-icon">{item.icon}</span>
-            <h3>{item.title}</h3>
-            <p>{item.body}</p>
-          </Reveal>
-        ))}
-      </div>
+    <section id="about" className="content-section">
+      <Reveal><h2 className="section-heading"><span className="heading-num">01.</span> About</h2></Reveal>
+      <Reveal delay={100}>
+        <div className="about-text">
+          {items.map((t, i) => (
+            <p key={i}>{t}</p>
+          ))}
+        </div>
+      </Reveal>
     </section>
   )
 }
@@ -128,7 +179,7 @@ function Experience() {
       period: 'Jan 2025 -- Present',
       bullets: [
         'Closed 9 High-severity security findings across two adversarial codebase audits by moving auth into httpOnly/Secure cookies with double-submit CSRF and fixing IDOR/SSRF/XSS gaps.',
-        'Built a support ticketing platform end-to-end using Spring Boot, React, and AWS S3, now running in production for real support tickets.',
+        'Built a support ticketing platform end-to-end using Spring Boot, React, and AWS S3, now running in production.',
         'Migrated a client delivery pipeline onto Azure Blob Storage using Azure AD auth and staged block-upload for 5GB+ files.',
         'Root-caused and fixed live production incidents including a stuck Kubernetes pod from an unbounded ClickHouse JDBC timeout.',
       ],
@@ -146,15 +197,14 @@ function Experience() {
     },
   ]
   return (
-    <section id="experience" className="section section-alt">
-      <Reveal><h2 className="section-title">Experience</h2></Reveal>
-      <div className="timeline">
+    <section id="experience" className="content-section">
+      <Reveal><h2 className="section-heading"><span className="heading-num">02.</span> Experience</h2></Reveal>
+      <div className="row-list">
         {roles.map((role, i) => (
-          <Reveal key={i} className="timeline-item">
-            <div className="timeline-dot" />
-            <div className="timeline-content">
-              <h3>{role.title}</h3>
-              <p className="timeline-meta">{role.company} &middot; {role.period}</p>
+          <Reveal key={i} delay={i * 100} className="timeline-row">
+            <div className="row-period">{role.period}</div>
+            <div className="row-body">
+              <h3>{role.title} <span className="row-company">&middot; {role.company}</span></h3>
               <ul>
                 {role.bullets.map((b, j) => (
                   <li key={j}>{b}</li>
@@ -163,6 +213,23 @@ function Experience() {
             </div>
           </Reveal>
         ))}
+      </div>
+    </section>
+  )
+}
+
+function Education() {
+  return (
+    <section id="education" className="content-section">
+      <Reveal><h2 className="section-heading"><span className="heading-num">03.</span> Education</h2></Reveal>
+      <div className="row-list">
+        <Reveal className="timeline-row">
+          <div className="row-period">2016 -- 2020</div>
+          <div className="row-body">
+            <h3>B.Tech, Computer Science Engineering <span className="row-company">&middot; Aliah University</span></h3>
+            <p className="row-plain">Kolkata, West Bengal</p>
+          </div>
+        </Reveal>
       </div>
     </section>
   )
@@ -190,24 +257,43 @@ function Projects() {
     },
   ]
   return (
-    <section id="projects" className="section">
-      <Reveal><h2 className="section-title">Projects</h2></Reveal>
-      <div className="projects-grid">
-        {projects.map((p) => (
-          <Reveal key={p.name} className="card project-card">
-            <h3>{p.name}</h3>
+    <section id="projects" className="content-section">
+      <Reveal><h2 className="section-heading"><span className="heading-num">04.</span> Projects</h2></Reveal>
+      <div className="row-list">
+        {projects.map((p, i) => (
+          <Reveal key={p.name} delay={i * 100} className="project-row">
+            <div className="project-row-header">
+              <h3>{p.name}</h3>
+              {p.link && (
+                <a className="project-link" href={p.link} target="_blank" rel="noreferrer">View &rarr;</a>
+              )}
+            </div>
             <div className="tag-row">
               {p.tags.map((t) => (
                 <span key={t} className="tag">{t}</span>
               ))}
             </div>
             <p>{p.body}</p>
-            {p.link && (
-              <a className="card-link" href={p.link} target="_blank" rel="noreferrer">
-                View on GitHub &rarr;
-              </a>
-            )}
           </Reveal>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function Achievements() {
+  const stats = [
+    { end: 9, suffix: '', label: 'High-Severity Security Findings Closed' },
+    { end: 2, suffix: '', label: 'Full Adversarial Security Audits Led' },
+    { end: 30, suffix: '', label: 'Job Applications Auto-Processed / Run' },
+    { end: 5, suffix: '+', label: 'Cloud Services Integrated' },
+  ]
+  return (
+    <section id="achievements" className="content-section">
+      <Reveal><h2 className="section-heading"><span className="heading-num">05.</span> Achievements</h2></Reveal>
+      <div className="stats-grid">
+        {stats.map((s, i) => (
+          <StatCard key={s.label} {...s} delay={i * 120} />
         ))}
       </div>
     </section>
@@ -218,14 +304,14 @@ function Skills() {
   const groups = [
     { title: 'Languages & Frameworks', items: ['Java', 'Spring Boot', 'Spring Security', 'Spring AI', 'React', 'JavaScript'] },
     { title: 'Databases & Messaging', items: ['MySQL', 'PostgreSQL', 'Redis', 'Elasticsearch', 'Apache Solr', 'RabbitMQ'] },
-    { title: 'Cloud, DevOps & Security', items: ['AWS', 'Azure', 'Docker', 'Git', 'Linux', 'OWASP / CSRF / IDOR remediation'] },
+    { title: 'Cloud, DevOps & Security', items: ['AWS', 'Azure', 'Docker', 'Git', 'Linux', 'OWASP remediation'] },
   ]
   return (
-    <section id="skills" className="section section-alt">
-      <Reveal><h2 className="section-title">Tech Stack</h2></Reveal>
-      <div className="skills-grid">
-        {groups.map((g) => (
-          <Reveal key={g.title} className="card">
+    <section id="skills" className="content-section">
+      <Reveal><h2 className="section-heading"><span className="heading-num">06.</span> Tech Stack</h2></Reveal>
+      <div className="row-list">
+        {groups.map((g, i) => (
+          <Reveal key={g.title} delay={i * 100} className="skills-row">
             <h3>{g.title}</h3>
             <div className="tag-row">
               {g.items.map((s) => (
@@ -248,10 +334,10 @@ function Contact() {
     { label: 'Email', href: 'mailto:mdfarazhaq@gmail.com' },
   ]
   return (
-    <section id="contact" className="section">
-      <Reveal>
-        <h2 className="section-title">Let's Connect</h2>
-        <p className="contact-sub">Open to backend, full-stack, and AI-assisted tooling opportunities.</p>
+    <section id="contact" className="content-section">
+      <Reveal><h2 className="section-heading"><span className="heading-num">07.</span> Let's Connect</h2></Reveal>
+      <Reveal delay={100}>
+        <p className="row-plain">Open to backend, full-stack, and AI-assisted tooling opportunities.</p>
         <div className="contact-links">
           {links.map((l) => (
             <a key={l.label} className="btn btn-outline" href={l.href} target="_blank" rel="noreferrer">
@@ -260,31 +346,24 @@ function Contact() {
           ))}
         </div>
       </Reveal>
+      <footer className="footer">Built by Md Farazul Haque &middot; {new Date().getFullYear()}</footer>
     </section>
-  )
-}
-
-function Footer() {
-  return (
-    <footer className="footer">
-      <p>Built by Md Farazul Haque &middot; {new Date().getFullYear()}</p>
-    </footer>
   )
 }
 
 export default function App() {
   return (
-    <>
-      <Nav />
-      <main>
-        <Hero />
+    <div className="layout">
+      <Sidebar />
+      <main className="content">
         <About />
         <Experience />
+        <Education />
         <Projects />
+        <Achievements />
         <Skills />
         <Contact />
       </main>
-      <Footer />
-    </>
+    </div>
   )
 }

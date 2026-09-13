@@ -132,12 +132,14 @@ export const social = [
   { label: 'GitHub', href: 'https://github.com/Farazulhaque' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/md-farazul-haque-b42200127/' },
   { label: 'Naukri', href: 'https://www.naukri.com/mnjuser/profile' },
+  { label: 'Medium', href: 'https://medium.com/@mdfarazhaq' },
 ]
 
 export const contact = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/md-farazul-haque-b42200127/' },
   { label: 'GitHub', href: 'https://github.com/Farazulhaque' },
   { label: 'Naukri', href: 'https://www.naukri.com/mnjuser/profile' },
+  { label: 'Medium', href: 'https://medium.com/@mdfarazhaq' },
   {
     label: 'WhatsApp',
     href: 'https://api.whatsapp.com/send?phone=917596885401&text=Hi%20there!%20I%20have%20a%20question%20:%29',

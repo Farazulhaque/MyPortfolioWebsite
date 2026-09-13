@@ -1158,27 +1158,103 @@ p {
   align-items: center;
 }
 
-.bento-hero-ring {
-  width: 132px;
-  height: 132px;
-  border-radius: 50%;
-  padding: 4px;
-  background: conic-gradient(from 0deg, var(--accent), var(--accent-2), var(--accent));
-  animation: bento-spin 6s linear infinite;
-  margin-bottom: 1.1rem;
-}
-
-@keyframes bento-spin {
-  to { transform: rotate(360deg); }
+.bento-photo-frame {
+  position: relative;
+  width: 148px;
+  height: 148px;
+  padding: 12px;
+  margin-bottom: 1.3rem;
 }
 
 .bento-photo {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  border-radius: 16px;
   object-fit: cover;
-  border: 4px solid var(--bg);
   display: block;
+  filter: saturate(1.05);
+}
+
+.bento-photo-corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--accent);
+  opacity: 0.9;
+}
+
+.bento-photo-corner-tl {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+  border-top-left-radius: 6px;
+}
+
+.bento-photo-corner-tr {
+  top: 0;
+  right: 0;
+  border-left: none;
+  border-bottom: none;
+  border-top-right-radius: 6px;
+}
+
+.bento-photo-corner-bl {
+  bottom: 0;
+  left: 0;
+  border-right: none;
+  border-top: none;
+  border-bottom-left-radius: 6px;
+}
+
+.bento-photo-corner-br {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+  border-bottom-right-radius: 6px;
+}
+
+.bento-photo-scan {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  box-shadow: 0 0 8px 1px rgba(var(--accent-rgb), 0.8);
+  animation: bento-scan 3.2s ease-in-out infinite;
+}
+
+@keyframes bento-scan {
+  0%, 100% { top: 14px; opacity: 0; }
+  10% { opacity: 1; }
+  50% { top: calc(100% - 16px); opacity: 1; }
+  60% { opacity: 0; }
+}
+
+.bento-photo-ping {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg);
+}
+
+.bento-photo-ping::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  animation: bento-ping 1.8s ease-out infinite;
+}
+
+@keyframes bento-ping {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(2.2); opacity: 0; }
 }
 
 .bento-status {

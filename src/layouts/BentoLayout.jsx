@@ -42,8 +42,14 @@ export default function BentoLayout() {
       <div className="bento-grain" />
 
       <header className="bento-hero">
-        <div className="bento-hero-ring">
+        <div className="bento-photo-frame">
+          <span className="bento-photo-corner bento-photo-corner-tl" />
+          <span className="bento-photo-corner bento-photo-corner-tr" />
+          <span className="bento-photo-corner bento-photo-corner-bl" />
+          <span className="bento-photo-corner bento-photo-corner-br" />
           <img className="bento-photo" src={`${import.meta.env.BASE_URL}profile.jpg`} alt={profile.name} />
+          <span className="bento-photo-scan" />
+          <span className="bento-photo-ping" title="Status: online" />
         </div>
         <span className="badge badge-status bento-status">{profile.status}</span>
         <h1 className="bento-name">{profile.name}</h1>

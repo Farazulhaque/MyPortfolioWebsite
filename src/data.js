@@ -46,6 +46,12 @@ export const experience = [
 
 export const education = [
   {
+    degree: 'M.Tech, Software Engineering',
+    school: 'Babasaheb Bhimrao Ambedkar University',
+    period: '2020 -- 2022',
+    location: 'Lucknow, Uttar Pradesh',
+  },
+  {
     degree: 'B.Tech, Computer Science Engineering',
     school: 'Aliah University',
     period: '2016 -- 2020',

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Reveal from '../Reveal'
 import { useCountUp, useReveal } from '../hooks'
-import { profile, about, experience, education, projects, achievements, skills, contact, social } from '../data'
+import { profile, about, experience, education, projects, achievements, skills, contact, social, now } from '../data'
 
 const BAR_HEIGHTS = [35, 55, 40, 70, 50, 85, 60, 95, 75, 100]
 
@@ -112,7 +112,19 @@ export default function ObservabilityLayout() {
       </section>
 
       <section className="obs-section">
-        <h2 className="obs-section-title">// deployed.services -- projects</h2>
+        <h2 className="obs-section-title">// current.status -- now</h2>
+        <Reveal className="obs-panel obs-now">
+          {now.map((n, i) => (
+            <div key={i} className="obs-now-line">
+              <span className="obs-live-dot" />
+              <span>{n}</span>
+            </div>
+          ))}
+        </Reveal>
+      </section>
+
+      <section className="obs-section">
+        <h2 className="obs-section-title">// deployed.services -- projects (postmortem view)</h2>
         <div className="obs-services-grid">
           {projects.map((p, i) => (
             <Reveal key={p.name} className="obs-panel obs-service-card" delay={i * 90}>
@@ -121,7 +133,18 @@ export default function ObservabilityLayout() {
               </div>
               <h3>{p.name}</h3>
               <div className="tag-row">{p.tags.map((t) => <span key={t} className="tag">{t}</span>)}</div>
-              <p>{p.body}</p>
+              {p.problem ? (
+                <dl className="obs-case-study">
+                  <dt>problem</dt>
+                  <dd>{p.problem}</dd>
+                  <dt>approach</dt>
+                  <dd>{p.approach}</dd>
+                  <dt>outcome</dt>
+                  <dd>{p.outcome}</dd>
+                </dl>
+              ) : (
+                <p>{p.body}</p>
+              )}
               {p.link && <a className="card-link" href={p.link} target="_blank" rel="noreferrer">endpoint: repo &rarr;</a>}
             </Reveal>
           ))}

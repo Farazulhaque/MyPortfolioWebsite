@@ -4,12 +4,14 @@ import SidebarLayout from './layouts/SidebarLayout'
 import DashboardLayout from './layouts/DashboardLayout'
 import TerminalLayout from './layouts/TerminalLayout'
 import ObservabilityLayout from './layouts/ObservabilityLayout'
+import BlueprintLayout from './layouts/BlueprintLayout'
 
 const LAYOUTS = {
   sidebar: { label: 'Sidebar', Component: SidebarLayout },
   dashboard: { label: 'Dashboard', Component: DashboardLayout },
   terminal: { label: 'Terminal', Component: TerminalLayout },
   observability: { label: 'Observability', Component: ObservabilityLayout },
+  blueprint: { label: 'Blueprint', Component: BlueprintLayout },
 }
 
 const THEMES = {

@@ -3,13 +3,13 @@ import { usePersistentState } from './hooks'
 import SidebarLayout from './layouts/SidebarLayout'
 import DashboardLayout from './layouts/DashboardLayout'
 import TerminalLayout from './layouts/TerminalLayout'
-import BentoLayout from './layouts/BentoLayout'
+import ObservabilityLayout from './layouts/ObservabilityLayout'
 
 const LAYOUTS = {
   sidebar: { label: 'Sidebar', Component: SidebarLayout },
   dashboard: { label: 'Dashboard', Component: DashboardLayout },
   terminal: { label: 'Terminal', Component: TerminalLayout },
-  bento: { label: 'Bento', Component: BentoLayout },
+  observability: { label: 'Observability', Component: ObservabilityLayout },
 }
 
 const THEMES = {

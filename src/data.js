@@ -74,8 +74,8 @@ export const projects = [
     tags: ['Java', 'Spring Boot', 'Selenium', 'Spring AI'],
     body: 'A modular automation platform that applies to jobs on LinkedIn and Naukri using Selenium, replacing a monolithic handler with detector/extractor/resolver/submitter components. Integrated Google Gemini via Spring AI to auto-answer recruiter chatbot questions.',
     problem: 'Manually applying to jobs across LinkedIn and Naukri is slow and repetitive, and a single monolithic apply-handler was brittle against every site’s slightly different form flow and recruiter chatbot questions.',
-    approach: 'Rebuilt the apply flow around modular detector/extractor/resolver/submitter components instead of one handler, added dedup logic to avoid re-applying, and integrated Google Gemini via Spring AI to auto-answer recruiter chatbot questions in real time.',
-    outcome: '30+ job applications auto-processed and running end-to-end across both platforms; the resilience and dedup fixes are verified live rather than just in local testing.',
+    approach: 'Rebuilt the apply flow around modular detector/extractor/resolver/submitter components instead of one handler, including LinkedIn’s newer shadow-DOM Easy Apply modal, added dedup logic to avoid re-applying, and integrated Google Gemini via Spring AI to score job fit and auto-answer recruiter chatbot questions. Recent work handles calendar date pickers, whole-number-only fields, and retrying answers the form rejects. After each successful apply, it sends connection requests to the posting’s hiring team.',
+    outcome: '13,000+ job postings screened and 3,500+ applications submitted across both platforms, backed by a cache of 2,300+ reusable screening-question answers; every fix is verified live against real job postings rather than just in local testing.',
     link: 'https://github.com/Farazulhaque',
   },
   {
@@ -101,14 +101,14 @@ export const projects = [
 export const achievements = [
   { end: 9, suffix: '', label: 'High-Severity Security Findings Closed' },
   { end: 2, suffix: '', label: 'Full Adversarial Security Audits Led' },
-  { end: 30, suffix: '', label: 'Job Applications Auto-Processed / Run' },
+  { end: 3500, suffix: '+', label: 'Job Applications Auto-Submitted' },
   { end: 5, suffix: '+', label: 'Cloud Services Integrated' },
   { end: 6, suffix: '', label: 'Endpoints Hardened Against SSRF/WAF Bypass' },
   { end: 5, suffix: 'GB+', label: 'Max File Size Supported (Staged Uploads)' },
 ]
 
 export const now = [
-  'Iterating on the Automated Job Application Platform -- improving recruiter-chatbot answer accuracy and apply-flow resilience.',
+  'Iterating on the Automated Job Application Platform -- improving screening-question answer accuracy, LinkedIn Easy Apply form coverage, and hiring-team outreach.',
   'Owning production Spring Boot services end-to-end at ARC Document Solutions, with a continued security-first focus after closing 9 High-severity findings this year.',
   'Deepening AWS/Azure integration patterns (S3, Blob Storage, staged uploads) from real production incidents and fixes.',
 ]

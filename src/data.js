@@ -29,6 +29,9 @@ export const experience = [
       'Built a support ticketing platform end-to-end using Spring Boot, React, and AWS S3, now running in production.',
       'Migrated a client delivery pipeline onto Azure Blob Storage using Azure AD auth and staged block-upload for 5GB+ files.',
       'Root-caused and fixed live production incidents including a stuck Kubernetes pod from an unbounded ClickHouse JDBC timeout.',
+      'Integrated single sign-on (SSO) with an external identity provider, including event-driven account syncing designed so failed updates are always retried.',
+      'Standardized database access by moving application queries into stored procedures, validating each change against the running application before release.',
+      'Built reliable cloud file-transfer and data-retention services across AWS and Azure, with integrity checks before any source data is removed.',
     ],
   },
   {
@@ -120,11 +123,11 @@ export const skills = [
   },
   {
     title: 'Databases & Messaging',
-    items: ['MySQL', 'PostgreSQL', 'Redis', 'Elasticsearch', 'Apache Solr', 'RabbitMQ'],
+    items: ['MySQL', 'PostgreSQL', 'SQL Server', 'Stored Procedures', 'Redis', 'Elasticsearch', 'Apache Solr', 'RabbitMQ'],
   },
   {
     title: 'Cloud, DevOps & Security',
-    items: ['AWS', 'Azure', 'Docker', 'Git', 'Linux', 'OWASP remediation'],
+    items: ['AWS', 'Azure', 'Docker', 'Kubernetes', 'AWS IAM/STS', 'SSO / OAuth integration', 'Git', 'Linux', 'OWASP remediation'],
   },
 ]
 
